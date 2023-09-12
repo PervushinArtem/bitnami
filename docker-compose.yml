@@ -9,6 +9,7 @@ services:
       - MARIADB_DATABASE=bitnami_magento
     volumes:
       - 'mariadb_data:/bitnami'
+      - './mariadb/data:/bitnami/mariadb/data'
     ports:
       - '3306:3306'
   magento:
@@ -27,6 +28,7 @@ services:
       - '443:443'
     volumes:
       - 'magento_data:/bitnami'
+      - './magento:/bitnami/magento'
     depends_on:
       - mariadb
       - elasticsearch
@@ -36,6 +38,7 @@ services:
       - ELASTICSEARCH_HEAP_SIZE=512m
     volumes:
       - 'elasticsearch_data:/bitnami/elasticsearch/data'
+      - './elasticsearch/data:/bitnami/elasticsearch/data'
 volumes:
   mariadb_data:
     driver: local
